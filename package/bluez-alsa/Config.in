@@ -1,0 +1,29 @@
+config BR2_PACKAGE_BLUEZ_ALSA
+	bool "bluez-alsa"
+	depends on BR2_PACKAGE_BLUEZ5_UTILS
+	select BR2_PACKAGE_ALSA_LIB
+	help
+	  Bluetooth Audio ALSA Backend
+
+	  This project is a rebirth of a direct integration between Bluez and
+	  ALSA. Since Bluez >= 5, the build-in integration has been removed in
+	  favor of 3rd party audio applications. From now on, Bluez acts as a
+	  middleware between an audio application, which implements Bluetooth
+	  audio profile, and a Bluetooth audio device.
+
+	  https://github.com/Arkq/bluez-alsa
+
+if BR2_PACKAGE_BLUEZ_ALSA
+
+config BR2_PACKAGE_BLUEZ_ALSA_DEBUG
+	bool "debugging"
+	help
+	  Enable bluez alsa debugging support
+
+config BR2_PACKAGE_BLUEZ_ALSA_AAC
+	bool "aac"
+	select BR2_PACKAGE_FDK_AAC
+	help
+	  Enable (FDK) AAC support
+endif
+
