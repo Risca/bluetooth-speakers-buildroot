@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# Autostart bluealsa-aplay
+#
+
+# Allow a few customizations from a config file
+test -r /etc/default/bluealsa && . /etc/default/bluealsa
+
+case "$1" in
+  start)
+	BLUEALSA_APLAY_ARGS="${BLUEALSA_APLAY_ARGS} 00:00:00:00:00:00"
+
+	printf "Starting bluealsa-aplay: "
+	umask 077
+
+	start-stop-daemon -S -q -m -p /var/run/bluealsa-aplay.pid  --exec /usr/bin/bluealsa-aplay -- $BLUEALSA_APLAY_ARGS &
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+        ;;
+  stop)
+	printf "Stopping bluealsa-aplay: "
+	start-stop-daemon -K -q -p /var/run/bluealsa-aplay.pid
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+	;;
+  restart|reload)
+        "$0" stop
+        "$0" start
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
+

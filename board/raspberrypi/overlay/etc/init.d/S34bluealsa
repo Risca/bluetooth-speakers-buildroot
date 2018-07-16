@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# Autostart bluealsa
+#
+
+# Allow a few customizations from a config file
+test -r /etc/default/bluealsa && . /etc/default/bluealsa
+
+case "$1" in
+  start)
+	BLUEALSA_ARGS="${BLUEALSA_ARGS} -p a2dp-sink"
+
+	printf "Starting bluealsa a2dp-sink: "
+	umask 077
+
+	start-stop-daemon -S -q -m -p /var/run/bluealsa.pid  --exec /usr/bin/bluealsa -- $BLUEALSA_ARGS &
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+        ;;
+  stop)
+	printf "Stopping bluealsa a2dp-sink: "
+	start-stop-daemon -K -q -p /var/run/bluealsa.pid
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+	;;
+  restart|reload)
+        "$0" stop
+        "$0" start
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
+

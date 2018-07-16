@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# Autostart bluetoothd
+#
+
+# Allow a few customizations from a config file
+test -r /etc/default/bluetoothd && . /etc/default/bluetoothd
+
+case "$1" in
+  start)
+	printf "Starting bluetoothd: "
+	umask 077
+
+	start-stop-daemon -S -q -m -p /var/run/bluetoothd.pid  --exec /usr/libexec/bluetooth/bluetoothd -- $BLUETOOTHD_ARGS &	
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+        ;;
+  stop)
+        printf "Stopping bluetoothd: "
+	start-stop-daemon -K -q -p /var/run/bluetoothd.pid
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+	;;
+  restart|reload)
+        "$0" stop
+        "$0" start
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
+
