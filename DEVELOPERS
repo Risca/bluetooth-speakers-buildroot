@@ -162,6 +162,9 @@ F:	package/luasec/
 F:	package/lua-ev/
 F:	package/orbit/
 
+N:	Bartosz Bilas <b.bilas@grinn-global.com>
+F:	package/qt5/qt5scxml/
+
 N:	Bartosz Golaszewski <brgl@bgdev.pl>
 F:	package/autoconf-archive/
 F:	package/doxygen/
@@ -630,6 +633,8 @@ F:	package/zxing-cpp/
 
 N:	Gaël Portay <gael.portay@savoirfairelinux.com>
 F:	package/qt5/qt5virtualkeyboard/
+F:	package/qt5/qt5webengine/
+F:	package/qt5/qt5webkit-examples/
 
 N:	Gary Bisson <gary.bisson@boundarydevices.com>
 F:	board/boundarydevices/
@@ -1627,6 +1632,7 @@ N:	Sébastien Szymanski <sebastien.szymanski@armadeus.com>
 F:	package/mmc-utils/
 F:	package/python-flask-jsonrpc/
 F:	package/python-flask-login/
+F:	package/qt5/qt5charts/
 
 N:	Theo Debrouwere <t.debrouwere@televic.com>
 F:	package/pugixml/
