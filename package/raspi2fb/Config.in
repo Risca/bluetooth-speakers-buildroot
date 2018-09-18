@@ -1,0 +1,14 @@
+config BR2_PACKAGE_RASPI2FB
+	bool "raspi2fb"
+	depends on BR2_arm
+	depends on BR2_PACKAGE_RPI_USERLAND
+	select BR2_PACKAGE_LIBBSD
+	help
+	  Program to copy the Raspberry Pi display to a secondary
+	  framebuffer.
+
+	  https://github.com/AndrewFromMelbourne/raspi2fb
+
+comment "raspi2fb needs rpi-userland"
+	depends on BR2_arm
+	depends on !BR2_PACKAGE_RPI_USERLAND

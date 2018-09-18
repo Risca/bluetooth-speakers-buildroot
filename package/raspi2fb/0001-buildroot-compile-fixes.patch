@@ -1,0 +1,21 @@
+--- a/CMakeLists.txt	2018-09-18 18:30:20.072172509 +0200
++++ b/CMakeLists.txt	2018-09-18 18:46:50.982737731 +0200
+@@ -3,16 +3,9 @@
+ set(CMAKE_BUILD_TYPE Release)
+ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
+ 
+-include_directories(/opt/vc/include)
+-include_directories(/opt/vc/include/interface/vcos/pthreads)
+-include_directories(/opt/vc/include/interface/vmcs_host)
+-include_directories(/opt/vc/include/interface/vmcs_host/linux)
+-
+-link_directories(/opt/vc/lib)
+-
+ add_executable(raspi2fb raspi2fb.c syslogUtilities.c)
+ 
+-target_link_libraries(raspi2fb bcm_host bsd)
++target_link_libraries(raspi2fb bcm_host vchostif bsd)
+ 
+ set_property(TARGET raspi2fb PROPERTY SKIP_BUILD_RPATH TRUE)
+-install (TARGETS raspi2fb RUNTIME DESTINATION bin)
++install (TARGETS raspi2fb RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/sbin")
