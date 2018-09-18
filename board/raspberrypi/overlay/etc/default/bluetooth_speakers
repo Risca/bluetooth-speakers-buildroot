@@ -1,0 +1,8 @@
+#!/bin/sh
+
+export XDG_RUNTIME_DIR=/tmp/bluetooth_speakers-${USER}
+export QT_QPA_PLATFORM=eglfs
+export QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS=/dev/input/event0:rotate=90
+export QT_QPA_FB_TSLIB=1
+export TSLIB_FBDEVICE=/dev/fb1
+export TSLIB_TSDEVICE=/dev/input/event0

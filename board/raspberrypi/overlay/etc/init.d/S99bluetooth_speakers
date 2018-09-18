@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# Start bluetooth speakers UI
+#
+
+test -r /etc/default/bluetooth_speakers && . /etc/default/bluetooth_speakers
+
+case "$1" in
+  start)
+	printf "Starting bluetooth speakers UI: "
+	umask 077
+
+	mkdir -p ${XDG_RUNTIME_DIR}
+	chmod 0700 ${XDG_RUNTIME_DIR}
+
+	start-stop-daemon -S -q -m -p /var/run/bluetooth_speakers.pid --exec /opt/bluetooth-speakers/bin/bluetooth-speakers &
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+        ;;
+  stop)
+        printf "Stopping bluetooth speakers UI: "
+	start-stop-daemon -K -q -p /var/run/bluetooth_speakers.pid
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+	;;
+  restart|reload)
+        "$0" stop
+        "$0" start
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
