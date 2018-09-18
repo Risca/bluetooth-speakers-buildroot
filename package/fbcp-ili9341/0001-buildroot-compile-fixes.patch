@@ -1,0 +1,9 @@
+--- fbcp-ili9341-83f1326cf05f3d88e5e14000e9b2798283395d36/CMakeLists.txt.old	2018-09-18 19:46:00.623412907 +0200
++++ fbcp-ili9341-83f1326cf05f3d88e5e14000e9b2798283395d36/CMakeLists.txt	2018-09-18 19:47:16.460207323 +0200
+@@ -230,4 +230,5 @@
+ 
+ add_executable(fbcp-ili9341 ${sourceFiles})
+ 
+-target_link_libraries(fbcp-ili9341 pthread bcm_host)
++target_link_libraries(fbcp-ili9341 pthread bcm_host vchostif)
++install (TARGETS fbcp-ili9341 RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/sbin")

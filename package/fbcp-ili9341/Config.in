@@ -1,0 +1,13 @@
+config BR2_PACKAGE_FBCP_ILI9341
+	bool "fbcp-ili9341"
+	depends on BR2_arm
+	depends on BR2_PACKAGE_RPI_USERLAND
+	help
+	  This repository implements a driver for certain SPI-based LCD
+	  displays for Raspberry Pi A, B, 2, 3 and Zero.
+
+	  https://github.com/juj/fbcp-ili9341
+
+comment "fbcp-ili9341 needs rpi-userland"
+	depends on BR2_arm
+	depends on !BR2_PACKAGE_RPI_USERLAND
