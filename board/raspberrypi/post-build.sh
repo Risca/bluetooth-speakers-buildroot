@@ -13,4 +13,4 @@ fi
 mkdir -p ${TARGET_DIR}/boot
 
 mkdir -p ${BINARIES_DIR}/overlays
-mv -t ${BINARIES_DIR}/overlays ${BINARIES_DIR}/*-overlay.dtb
+find ${BINARIES_DIR} -mindepth 1 -maxdepth 1 -type f -name "*-overlay.dtb" -exec mv -t ${BINARIES_DIR}/overlays {} \;
