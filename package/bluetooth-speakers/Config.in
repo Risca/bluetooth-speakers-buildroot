@@ -1,0 +1,18 @@
+comment "bluetooth-speakers needs an Open(E)GL-capable backend"
+	depends on BR2_PACKAGE_QT5
+	depends on BR2_PACKAGE_QT5_JSCORE_AVAILABLE
+	depends on !BR2_PACKAGE_QT5_GL_AVAILABLE || !BR2_PACKAGE_HAS_LIBEGL
+
+config BR2_PACKAGE_BLUETOOTH_SPEAKERS
+	bool "bluetooth-speakers"
+	depends on BR2_PACKAGE_HAS_LIBEGL # qt5base-eglfs
+	depends on BR2_PACKAGE_QT5_GL_AVAILABLE
+	# No comment needed for this option, it's an architecture
+	# dependency.
+	depends on BR2_PACKAGE_QT5_JSCORE_AVAILABLE
+	select BR2_PACKAGE_QT5BASE_EGLFS
+	select BR2_PACKAGE_QT5CONNECTIVITY
+	select BR2_PACKAGE_QT5QUICKCONTROLS2
+	help
+	  Pair with bluetooth speakers
+
