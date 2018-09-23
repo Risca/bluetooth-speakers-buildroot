@@ -4,9 +4,9 @@
 #
 ################################################################################
 
-BLUETOOTH_SPEAKERS_VERSION = 1
-BLUETOOTH_SPEAKERS_SITE = ../bluetooth-speakers-src
-BLUETOOTH_SPEAKERS_SITE_METHOD = local
+BLUETOOTH_SPEAKERS_VERSION = v1.0
+BLUETOOTH_SPEAKERS_SITE = ssh://git@dalakolonin.se/bluetooth-speakers
+BLUETOOTH_SPEAKERS_SITE_METHOD = git
 BLUETOOTH_SPEAKERS_DEPENDENCIES = qt5base qt5connectivity qt5quickcontrols2
 BLUETOOTH_SPEAKERS_LICENSE = LGPL-3.0
 
